@@ -1,4 +1,3 @@
-import { useGetAllPlayers } from "./hooks/useFetching";
 import Home from "./pages/Home";
 import CreateTheme from "./styles/CreateTheme"
 

@@ -1,14 +1,10 @@
 import axios from "axios"
 
 import { balldontlieKey } from "../config/index"
-//axios.defaults.baseURL =
 
-
-//functions
-
-export const allPlayers = async () => {
+export const allPlayers = async ({ nextPage }: { nextPage: number }) => {
     try {
-        const res = await axios.get(`https://api.balldontlie.io/v1/players/`, {
+        const res = await axios.get(`https://api.balldontlie.io/v1/players/?cursor=${nextPage}`, {
             headers: {
                 'Authorization': balldontlieKey
             }

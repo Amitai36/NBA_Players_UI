@@ -1,4 +1,4 @@
-import { Checkbox, ListItemButton, ListItemIcon } from "@mui/material"
+import { Checkbox, ListItemButton, ListItemIcon } from "@mui/material";
 
 interface FavouriteProps {
     setFavourite: React.Dispatch<React.SetStateAction<number[]>>
@@ -7,10 +7,9 @@ interface FavouriteProps {
 }
 
 function Favourite(props: FavouriteProps) {
-    const { favourite, setFavourite, value } = props
+    const { favourite, setFavourite, value } = props;
 
     const handleToggle = (value: number) => () => {
-        console.log(value)
         const currentIndex = favourite.indexOf(value);
         const newFavourite = [...favourite];
 
@@ -24,19 +23,18 @@ function Favourite(props: FavouriteProps) {
     };
 
     return (
-        <div>
-            <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
-                <ListItemIcon>
-                    <Checkbox
-                        edge="start"
-                        checked={favourite.includes(value)}
-                        tabIndex={-1}
-                        disableRipple
-                    />
-                </ListItemIcon>
-            </ListItemButton>
-        </div>
-    )
+        <ListItemButton role={undefined} onClick={handleToggle(value)} dense sx={{ padding: 0, maxWidth: "10%" }}>
+            <ListItemIcon>
+                <Checkbox
+                    size="small"
+                    edge="start"
+                    checked={favourite.includes(value)}
+                    tabIndex={-1}
+                    disableRipple
+                />
+            </ListItemIcon>
+        </ListItemButton>
+    );
 }
 
-export default Favourite
+export default Favourite;

@@ -1,6 +1,6 @@
 import { Pool } from "pg"
 
-export const client = new Pool({
+export const pool = new Pool({
     host: 'db',
     port: 5432,
     user: 'user123',
@@ -8,7 +8,7 @@ export const client = new Pool({
     database: 'db123'
 });
 
-export default client.connect()
+export default pool.connect()
     .then(() => {
         console.log('Connected to the database successfully!');
     })
@@ -16,5 +16,5 @@ export default client.connect()
         console.error('Connection error', err.stack);
     })
     .finally(() => {
-        client.end();
+        pool.end();
     });

@@ -31,3 +31,5 @@ export interface AllPlayersTypes {
         per_page: number;
     }
 }
+
+export type Fav = { name: string, id: number }

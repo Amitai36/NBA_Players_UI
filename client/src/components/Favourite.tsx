@@ -1,34 +1,37 @@
+import { useState } from "react";
 import { Checkbox, ListItemButton, ListItemIcon } from "@mui/material";
 
+import { Fav } from "../types/players";
+import { useAddFavPLayer, useRemoveFavPLayer } from "../hooks/useFetching";
+
 interface FavouriteProps {
-    setFavourite: React.Dispatch<React.SetStateAction<number[]>>
-    favourite: number[]
+    name: string
     value: number
+    allFav?: { data: Fav[] }
 }
 
 function Favourite(props: FavouriteProps) {
-    const { favourite, setFavourite, value } = props;
+    const { name, value, allFav } = props;
+    const [toggle, setToggle] = useState(!allFav?.data.every(item => item.id !== value) ?? false)
+    const { mutate: removeMutate } = useRemoveFavPLayer()
+    const { mutate: addMutate } = useAddFavPLayer()
 
-    const handleToggle = (value: number) => () => {
-        const currentIndex = favourite.indexOf(value);
-        const newFavourite = [...favourite];
-
-        if (currentIndex === -1) {
-            newFavourite.push(value);
-        } else {
-            newFavourite.splice(currentIndex, 1);
+    const handleToggle = () => () => {
+        setToggle(prev => !prev)
+        if (toggle)
+            removeMutate({ id: value })
+        else {
+            addMutate({ id: value, name })
         }
-
-        setFavourite(newFavourite);
     };
 
     return (
-        <ListItemButton role={undefined} onClick={handleToggle(value)} dense sx={{ padding: 0, maxWidth: "10%" }}>
+        <ListItemButton role={undefined} onClick={handleToggle} dense sx={{ padding: 0, maxWidth: "10%" }}>
             <ListItemIcon>
                 <Checkbox
                     size="small"
                     edge="start"
-                    checked={favourite.includes(value)}
+                    checked={toggle}
                     tabIndex={-1}
                     disableRipple
                 />

@@ -12,3 +12,4 @@ export const getAllPlayers = async (req: Request<{}, {}, {}, { nextPage: number,
         res.json(error).status(500)
     }
 }
+

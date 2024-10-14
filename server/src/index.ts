@@ -8,6 +8,7 @@ import bodyParser from "body-parser";
 
 import api from "./api";
 import { port } from "./config/index"
+import connect from "./db/connect";
 // import { loadData } from "./utils/loadFile";
 
 //for get var from env
@@ -36,6 +37,7 @@ app.use(morgan("dev"))
 app.use("/api", api)
 
 //listen to 3000 port
-app.listen(port, () => {
+app.listen(port, async () => {
+    await connect
     console.log("listen to port 3000")
 })

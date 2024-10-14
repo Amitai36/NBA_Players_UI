@@ -1,15 +1,15 @@
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import { List, ListItem, ListItemText, Typography } from "@mui/material"; // Importing Material-UI components
 
 import { Fav } from "../types/players";
 import Favourite from "./Favourite";
 
-
+// Defining the props for the FavouriteList component
 interface FavouriteListProps {
-    allFav?: { data: Fav[] }
+    allFav?: { data: Fav[] };
 }
 
 function FavouriteList(props: FavouriteListProps) {
-    const { allFav } = props
+    const { allFav } = props;
 
     return (
         <div>
@@ -25,7 +25,7 @@ function FavouriteList(props: FavouriteListProps) {
                 ))}
             </List>
         </div>
-    )
+    );
 }
 
-export default FavouriteList
+export default FavouriteList; 

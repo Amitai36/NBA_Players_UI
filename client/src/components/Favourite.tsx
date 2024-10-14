@@ -1,27 +1,33 @@
-import { useState } from "react";
-import { Checkbox, ListItemButton, ListItemIcon } from "@mui/material";
+import { useState } from "react"; // Importing useState hook from React
+import { Checkbox, ListItemButton, ListItemIcon } from "@mui/material"; // Importing Material-UI components
 
-import { Fav } from "../types/players";
-import { useAddFavPLayer, useRemoveFavPLayer } from "../hooks/useFetching";
+import { Fav } from "../types/players"; // Importing the Fav type for TypeScript
+import { useAddFavPLayer, useRemoveFavPLayer } from "../hooks/useFetching"; // Importing custom hooks for fetching data
 
+// Defining the props for the Favourite component
 interface FavouriteProps {
-    name: string
-    value: number
-    allFav?: { data: Fav[] }
+    name: string; //
+    value: number;
+    allFav?: { data: Fav[] };
 }
 
 function Favourite(props: FavouriteProps) {
     const { name, value, allFav } = props;
-    const [toggle, setToggle] = useState(!allFav?.data.every(item => item.id !== value) ?? false)
-    const { mutate: removeMutate } = useRemoveFavPLayer()
-    const { mutate: addMutate } = useAddFavPLayer()
+    const [toggle, setToggle] = useState(!allFav?.data.every(item => item.id !== value) ?? false);
 
+    // Mutate functions for adding/removing favorite players
+    const { mutate: removeMutate } = useRemoveFavPLayer();
+    const { mutate: addMutate } = useAddFavPLayer();
+
+    // Function to handle toggle action
     const handleToggle = () => () => {
-        setToggle(prev => !prev)
-        if (toggle)
-            removeMutate({ id: value })
-        else {
-            addMutate({ id: value, name })
+        setToggle(prev => !prev);
+        if (toggle) {
+            // If currently toggled (favorite), remove from favorites
+            removeMutate({ id: value });
+        } else {
+            // If not toggled, add to favorites
+            addMutate({ id: value, name });
         }
     };
 

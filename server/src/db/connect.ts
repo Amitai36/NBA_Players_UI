@@ -8,6 +8,7 @@ export const pool = new Pool({
     database: 'db123'
 });
 
+// Connecting to the database and handling the connection process
 export default pool.connect()
     .then(() => {
         console.log('Connected to the database successfully!');

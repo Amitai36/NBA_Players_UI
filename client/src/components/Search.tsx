@@ -9,17 +9,21 @@ interface SearchProps {
 }
 
 function Search(props: SearchProps) {
-    const { search, setSearch } = props
+    const { search, setSearch } = props;
 
-    const inputRef = useRef<HTMLInputElement>();
+    const inputRef = useRef<HTMLInputElement>(); // Ref for the input field
+
+    // Function to handle changes in the input field
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
-        setSearch(e.target.value);
+        setSearch(e.target.value); // Update the search state
     };
+
+    // Hotkey to focus the input field when "ctrl+i" is pressed
     useHotkeys("ctrl+i", () => {
         if (inputRef.current) {
-            inputRef?.current.focus();
+            inputRef.current.focus(); // Focus on the input field
         }
     });
 

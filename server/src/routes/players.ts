@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { addFavPLayer, getAllPlayers, removeFavPLayer , getAllFav} from "../controllers/players";
+import { addFavPLayer, getAllPlayers, removeFavPLayer, getAllFav } from "../controllers/players";
 
 
 const router = Router();

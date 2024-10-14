@@ -1,11 +1,12 @@
 import { Pool } from "pg"
+import { database, dbport, host, password, user } from "../config";
 
 export const pool = new Pool({
-    host: 'db',
-    port: 5432,
-    user: 'user123',
-    password: 'password123',
-    database: 'db123'
+    host: host,
+    port: dbport,
+    user: user,
+    password: password,
+    database: database
 });
 
 // Connecting to the database and handling the connection process

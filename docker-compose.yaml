@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    container_name: postgresql_nba
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password123
+      POSTGRES_USER: user123
+      POSTGRES_DB: db123
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+  app:
+    image: my_node_app
+    ports:
+      - 13000:3000

@@ -12,3 +12,7 @@ export const getAllPlayers = async (req: Request<{}, {}, {}, { nextPage: number,
         res.json(error).status(500)
     }
 }
+const players_id = [26, 27, 28, 29, 30, 31]
+export const getFavourite = async (_req: Request, _res: Response) => {
+
+}

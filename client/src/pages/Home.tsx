@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material"
+
 import NavBar from "../layout/NavBar"
 import PlayerList from "../components/PlayerList"
 

@@ -23,4 +23,15 @@ export const addFavPLayer = async (req: Request<{}, {}, { id: number, name: stri
     } catch (error) {
         res.json({ message: error })
     }
+}
+
+export const removeFavPLayer = async (req: Request<{}, {}, { id: number }>, res: Response) => {
+    const { id } = req.body
+
+    try {
+        await pool.query('DELETE FROM public.fav WHERE name like $1;', [id])
+        res.json({ message: "success" })
+    } catch (error) {
+        res.json({ message: error })
+    }
 } 
